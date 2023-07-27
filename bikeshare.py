@@ -68,15 +68,15 @@ def load_data(city, month, day):
 
     # Filter by month if applicable
     if month != 'all':
-        # Extract the month from the 'Start Time' column and filter the DataFrame
-        month_num = MONTHS.index(month) - 1
-        df = df[df['Start Time'].dt.month == month_num]
+        # Convert month name to month number for faster comparison
+        month_num = ['january', 'february', 'march', 'april', 'may', 'june'].index(month) + 1
+        df = df[df['month'] == month_num]
 
     # Filter by day if applicable
     if day != 'all':
-        # Extract the day of the week from the 'Start Time' column and filter the DataFrame
-        day_num = DAYS.index(day) - 1
-        df = df[df['Start Time'].dt.dayofweek == day_num]
+        # Convert day name to day number for faster comparison
+        day_num = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].index(day)
+        df = df[df['day_of_week'] == day_num]
 
     return df
 
