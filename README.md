@@ -31,4 +31,4 @@ Phan Thi Tuyet Giang
 
 ## License
 
-N/A
+License by Phan Thi Tuyet Giang
