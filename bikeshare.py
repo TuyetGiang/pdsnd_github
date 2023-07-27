@@ -45,6 +45,15 @@ def get_filters():
     print('-'*40)
     return city, month, day
 
+def month_name_to_number(month_name):
+    """Converts month name to month number."""
+    months = ['january', 'february', 'march', 'april', 'may', 'june']
+    return months.index(month_name.lower()) + 1
+
+def day_name_to_number(day_name):
+    """Converts day name to day number."""
+    days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+    return days.index(day_name.lower())
 
 def load_data(city, month, day):
     """
@@ -67,15 +76,13 @@ def load_data(city, month, day):
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
     # Filter by month if applicable
-    if month != 'all':
-        # Convert month name to month number for faster comparison
-        month_num = ['january', 'february', 'march', 'april', 'may', 'june'].index(month) + 1
+    if month.lower() != 'all':
+        month_num = month_name_to_number(month)
         df = df[df['month'] == month_num]
 
     # Filter by day if applicable
-    if day != 'all':
-        # Convert day name to day number for faster comparison
-        day_num = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].index(day)
+    if day.lower() != 'all':
+        day_num = day_name_to_number(day)
         df = df[df['day_of_week'] == day_num]
 
     return df
